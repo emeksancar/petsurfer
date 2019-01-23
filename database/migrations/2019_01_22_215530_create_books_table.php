@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->string('name');
             $table->integer('author')->unsigned();
             $table->integer('category')->unsigned();
-            $table->string('isbn');
+            $table->string('isbn', 13);
             $table->timestamps();
             $table->softDeletes()->nullable();
         });

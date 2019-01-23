@@ -45,7 +45,7 @@ class BooksController extends Controller
             'name' => 'required',
             'author' => 'required',
             'category' => 'required',
-            'isbn' => 'required'
+            'isbn' => 'required|unique:books|max:13'
         ]);
 
         $all = $request->all();
@@ -54,7 +54,7 @@ class BooksController extends Controller
 
             return redirect(route('book.edit', $id))->with('success', ['Kitap basariyla kaydedildi.']);
         } else {
-            return back()->withErrors('errors', 'isbn yanlis');
+            return back()->withErrors(['message1'=>'Girdiginiz ISBN numarasi hatali']);
         }
     }
 
@@ -81,7 +81,7 @@ class BooksController extends Controller
 
             return redirect(route('book.edit', $id))->with('success', ['Kitap basariyla duzenlendi.']);
         } else {
-            return back()->withErrors('errors', 'isbn yanlis');
+            return back()->withErrors(['message1'=>'Girdiginiz ISBN numarasi hatali']);
         }
     }
 

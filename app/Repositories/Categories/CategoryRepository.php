@@ -45,7 +45,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $this->model->find($param['id'])->update($param);
 
-        return param['id'];
+        return $param['id'];
     }
 
     public function deleteCategory($id)
