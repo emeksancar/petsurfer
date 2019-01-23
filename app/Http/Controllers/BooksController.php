@@ -10,8 +10,13 @@ use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
-    public function __construct(Book $book, BookRepository $bookRepository, CategoryRepository $categoryRepository, AuthorRepository $authorRepository)
-    {
+    public function __construct
+    (
+        Book $book,
+        BookRepository $bookRepository,
+        CategoryRepository $categoryRepository,
+        AuthorRepository $authorRepository
+    ){
         $this->model = $book;
         $this->repository = $bookRepository;
         $this->catRepository = $categoryRepository;
@@ -28,8 +33,9 @@ class BooksController extends Controller
     }
 
     public function create() {
-        $cats = $this->catRepository->getCategories("");
-        $authors = $this->authorRepository->getAuthors("");
+        $param = [];
+        $cats = $this->catRepository->getCategories($param);
+        $authors = $this->authorRepository->getAuthors($param);
         $route = "book.store";
         return view('book/book-create', compact('route', 'cats', 'authors'));
     }
@@ -44,7 +50,7 @@ class BooksController extends Controller
 
         $all = $request->all();
         if ($this->model->isValidIsbn($all['isbn'])) {
-            $id = $this->model->create($all)->id;
+            $id = $this->repository->saveBook($all);
 
             return redirect(route('book.edit', $id))->with('success', ['Kitap basariyla kaydedildi.']);
         } else {
@@ -56,7 +62,7 @@ class BooksController extends Controller
         $cats = $this->catRepository->getCategories("");
         $authors = $this->authorRepository->getAuthors("");
         $route = "book.update";
-        $book = $this->model->find($id);
+        $book = $this->repository->findBook($id);
 
         return view('book/book-create', compact('route', 'book', 'cats', 'authors'));
     }
@@ -71,7 +77,7 @@ class BooksController extends Controller
 
         $all = $request->all();
         if ($this->model->isValidIsbn($all['isbn'])) {
-            $id = $this->model->create($all)->id;
+            $id = $this->repository->updateBook($all);
 
             return redirect(route('book.edit', $id))->with('success', ['Kitap basariyla duzenlendi.']);
         } else {
@@ -80,8 +86,7 @@ class BooksController extends Controller
     }
 
     public function destroy($id) {
-        $book = $this->model->find($id);
-        $book->delete();
+        $this->repository->deleteBook($id);
 
         return redirect(route('books.list'))->with('success', ['Kitap basariyla silindi.']);
     }

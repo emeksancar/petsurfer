@@ -16,7 +16,7 @@
     <tr>
         <th>Id</th>
         <th>Adi</th>
-        <th>Soyadi</th>
+        <th>Aciklama</th>
         <th>Islemler</th>
     </tr>
     @foreach($categories as $category)

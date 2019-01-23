@@ -9,4 +9,8 @@ namespace App\Repositories\Books;
  */
 interface BookRepositoryInterface {
     public function getBooks($param);
+    public function saveBook($param);
+    public function findBook($id);
+    public function updateBook($param);
+    public function deleteBook($id);
 }

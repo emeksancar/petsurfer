@@ -31,4 +31,26 @@ class AuthorRepository implements AuthorRepositoryInterface
 
         return $query->get();
     }
+
+    public function findAuthor($id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function deleteAuthor($id)
+    {
+        $this->model->find($id)->delete();
+    }
+
+    public function saveAuthor($param)
+    {
+        return $this->model->create($param)->id;
+    }
+
+    public function updateAuthor($param)
+    {
+        $this->model->find($param['id'])->update($param);
+
+        return $param['id'];
+    }
 }

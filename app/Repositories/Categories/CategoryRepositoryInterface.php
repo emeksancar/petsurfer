@@ -9,4 +9,8 @@ namespace App\Repositories\Categories;
 
 interface CategoryRepositoryInterface {
     public function getCategories($param);
+    public function saveCategory($param);
+    public function findCategory($id);
+    public function updateCategory($param);
+    public function deleteCategory($id);
 }

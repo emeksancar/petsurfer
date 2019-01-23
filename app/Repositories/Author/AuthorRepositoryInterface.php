@@ -8,4 +8,8 @@ namespace App\Repositories\Author;
  */
 interface AuthorRepositoryInterface {
     public function getAuthors($param);
+    public function saveAuthor($param);
+    public function findAuthor($id);
+    public function updateAuthor($param);
+    public function deleteAuthor($id);
 }

@@ -34,14 +34,14 @@ class AuthorsController extends Controller
         ]);
 
         $all = $request->all();
-        $id = $this->model->create($all)->id;
+        $id = $this->repository->saveAuthor($all);
 
         return redirect(route('author.edit', $id))->with('success', ['Yazar basariyla kaydedildi.']);
     }
 
     public function edit($id) {
         $route = "author.update";
-        $author = $this->model->find($id);
+        $author = $this->repository->findAuthor($id);
 
         return view('author/author-create', compact('route', 'author'));
     }
@@ -55,15 +55,13 @@ class AuthorsController extends Controller
         ]);
 
         $all = $request->all();
-        $author = $this->model->find($all['id']);
-        $author->update($all);
+        $this->repository->updateAuthor($all);
 
         return back()->with('success', ['Yazar basariyla duzenlendi.']);
     }
 
     public function destroy($id) {
-        $author = $this->model->find($id);
-        $author->delete();
+        $this->repository->deleteAuthor($id);
 
         return redirect(route('author.list'))->with('success', ['Yazar basariyla silindi.']);
     }

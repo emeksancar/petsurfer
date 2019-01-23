@@ -30,4 +30,26 @@ class CategoryRepository implements CategoryRepositoryInterface
 
         return $query->get();
     }
+
+    public function findCategory($id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function saveCategory($param)
+    {
+        return $this->model->create($param)->id;
+    }
+
+    public function updateCategory($param)
+    {
+        $this->model->find($param['id'])->update($param);
+
+        return param['id'];
+    }
+
+    public function deleteCategory($id)
+    {
+        $this->model->find($id)->delete();
+    }
 }

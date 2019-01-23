@@ -40,4 +40,26 @@ class BookRepository implements BookRepositoryInterface
 
         return $query->get();
     }
+
+    public function saveBook($all)
+    {
+         return $this->model->create($all)->id;
+    }
+
+    public function findBook($id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function updateBook($param)
+    {
+        $this->model->find($param['id'])->update($param);
+
+        return $param['id'];
+    }
+
+    public function deleteBook($id)
+    {
+        $this->model->find($id)->delete();
+    }
 }

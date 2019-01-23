@@ -32,14 +32,14 @@ class CategoriesController extends Controller
         ]);
 
         $all = $request->all();
-        $id = $this->model->create($all)->id;
+        $id = $this->repository->saveCategory($all);
 
         return redirect(route('category.edit', $id))->with('success', ['Kategori basariyla olusturuldu.']);
     }
 
     public function edit($id) {
         $route = "category.update";
-        $category = $this->model->find($id);
+        $category = $this->repository->findCategory($id);
 
         return view('category/category-create', compact('route', 'category'));
     }
@@ -50,15 +50,13 @@ class CategoriesController extends Controller
         ]);
 
         $all = $request->all();
-        $category = $this->model->find($all['id']);
-        $category->update($all);
+        $this->repository->updateCategory($all);
 
         return back()->with('success', ['Kategori basariyla duzenlendi.']);
     }
 
     public function destroy($id) {
-        $category = $this->model->find($id);
-        $category->delete();
+        $this->repository->deleteCategory($id);
 
         return redirect(route('category.list'))->with('success', ['Kategori basariyla silindi.']);
     }
