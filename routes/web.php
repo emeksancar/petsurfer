@@ -14,11 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('home', function () {
+    return view('welcome');
+});
 
-Auth::routes();
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('login', 'Auth\AuthController@getLogin');
-Route::post('login', 'Auth\AuthController@postLogin');
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
 
 // Books
 Route::get('books/list', 'BooksController@list')->name('books.list');
@@ -36,13 +43,10 @@ Route::post('author/store', 'AuthorsController@store')->name('author.store');
 Route::get('author/edit/{id}', 'AuthorsController@edit')->name('author.edit');
 Route::post('author/update', 'AuthorsController@update')->name('author.update');
 
-//Category
+//Categories
 Route::get('category/list', 'CategoriesController@list')->name('category.list');
 Route::get('category/create', 'CategoriesController@create')->name('category.create');
 Route::get('category/delete/{id}  ', 'CategoriesController@destroy')->name('category.delete');
 Route::post('category/store', 'CategoriesController@store')->name('category.store');
 Route::get('category/edit/{id}', 'CategoriesController@edit')->name('category.edit');
 Route::post('category/update', 'CategoriesController@update')->name('category.update');
-
-
-//Categories
