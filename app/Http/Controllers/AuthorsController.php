@@ -18,12 +18,12 @@ class AuthorsController extends Controller
         $param = $request->toArray();
         $authors = $this->repository->getAuthors($param);
 
-        return view('list-author', compact('authors'));
+        return view('author/list-author', compact('authors'));
     }
 
     public function create() {
         $route = "author.store";
-        return view('author-create', compact('route'));
+        return view('author/author-create', compact('route'));
     }
 
     public function store(Request $request) {
@@ -34,16 +34,16 @@ class AuthorsController extends Controller
         ]);
 
         $all = $request->all();
-        $this->model->create($all);
+        $id = $this->model->create($all)->id;
 
-        return view('list-author');
+        return redirect(route('category.update', $id));
     }
 
     public function edit($id) {
         $route = "author.update";
         $author = $this->model->find($id);
 
-        return view('author-create', compact('route', 'author'));
+        return view('author/author-create', compact('route', 'author'));
     }
 
     public function update(Request $request) {
@@ -65,6 +65,6 @@ class AuthorsController extends Controller
         $author = $this->model->find($id);
         $author->delete();
 
-        return view('list-author');
+        return redirect(route('author.list'));
     }
 }

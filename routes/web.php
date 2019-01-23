@@ -30,5 +30,13 @@ Route::post('author/store', 'AuthorsController@store')->name('author.store');
 Route::get('author/edit/{id}', 'AuthorsController@edit')->name('author.edit');
 Route::post('author/update', 'AuthorsController@update')->name('author.update');
 
+//Category
+Route::get('category/list', 'CategoriesController@list')->name('category.list');
+Route::get('category/create', 'CategoriesController@create')->name('category.create');
+Route::get('category/delete/{id}  ', 'CategoriesController@destroy')->name('category.delete');
+Route::post('category/store', 'CategoriesController@store')->name('category.store');
+Route::get('category/edit/{id}', 'CategoriesController@edit')->name('category.edit');
+Route::post('category/update', 'CategoriesController@update')->name('category.update');
+
 
 //Categories

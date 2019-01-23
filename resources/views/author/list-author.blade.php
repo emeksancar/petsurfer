@@ -3,6 +3,8 @@
     <button type="submit" class="btn btn-success">Ara</button>
 </form>
 
+<a href="{{ route('author.create') }}">Yeni Yazar Ekle</a>
+
 <h2>Yazarlar</h2>
 
 <table>
@@ -25,7 +27,6 @@
             </td>
         </tr>
     @endforeach
-
 </table>
 
 </body>
