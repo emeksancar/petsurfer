@@ -36,7 +36,7 @@ class AuthorsController extends Controller
         $all = $request->all();
         $id = $this->model->create($all)->id;
 
-        return redirect(route('category.update', $id));
+        return redirect(route('author.edit', $id));
     }
 
     public function edit($id) {

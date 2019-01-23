@@ -19,8 +19,14 @@ Auth::routes();
 
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@postLogin');
+
 // Books
 Route::get('books/list', 'BooksController@list')->name('books.list');
+Route::get('book/create', 'BooksController@create')->name('book.create');
+Route::get('book/delete/{id}  ', 'BooksController@destroy')->name('book.delete');
+Route::post('book/store', 'BooksController@store')->name('book.store');
+Route::get('book/edit/{id}', 'BooksController@edit')->name('book.edit');
+Route::post('book/update', 'BooksController@update')->name('book.update');
 
 //Authors
 Route::get('author/list', 'AuthorsController@list')->name('author.list');

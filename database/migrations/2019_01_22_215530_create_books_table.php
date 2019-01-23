@@ -17,6 +17,7 @@ class CreateBooksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('author')->unsigned();
+            $table->integer('category')->unsigned();
             $table->string('isbn');
             $table->timestamps();
             $table->softDeletes()->nullable();
