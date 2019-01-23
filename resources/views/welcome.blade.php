@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>PetSurfer Kitap Yonetim Sistemi</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -81,13 +81,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    PetSurfer Kutuphane Yonetim Sistemine Hosgeldiniz!
+                    PetSurfer Kitap Yonetim Sistemine Hosgeldiniz!
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Kitaplar</a>
-                    <a href="https://laracasts.com">Yazarlar</a>
-                    <a href="https://laravel-news.com">Kategoriler</a>
+                    <a href="{{ route('books.list') }}">Kitaplar</a>
+                    <a href="{{ route('author.list') }}">Yazarlar</a>
+                    <a href="{{ route('category.list') }}">Kategoriler</a>
                 </div>
             </div>
         </div>

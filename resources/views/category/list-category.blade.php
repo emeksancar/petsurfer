@@ -1,11 +1,15 @@
+@extends ('layouts.default')
+
+@section('content')
 <form action="{{ route('category.list') }}" method="get">
-    <input type="text" name="keyword" value="{{ app('request')->input('keyword') }}">
+    <input placeholder="Kategori adi ya da aciklamasi" class="form-item form-control" type="text" name="keyword" value="{{ app('request')->input('keyword') }}">
     <button type="submit" class="btn btn-success">Ara</button>
 </form>
 
-<a href="{{ route('category.create') }}">Yeni Kategori Ekle</a>
-
-<h2>Kategoriler</h2>
+<div class="upper-list">
+    <h2>Kategoriler</h2>
+    <a class="btn btn-success add-button" href="{{ route('category.create') }}">Yeni Kategori Ekle</a>
+</div>
 
 <table>
     <tr>
@@ -20,29 +24,10 @@
             <td>{{ $category->name }}</td>
             <td>{{ $category->cat_desc }}</td>
             <td>
-                <a href="{{ route('category.edit', $category->id) }}">Duzenle</a>
-                <a href="{{ route('category.delete', $category->id) }}">Sil</a>
+                <a class="btn btn-info" href="{{ route('category.edit', $category->id) }}">Duzenle</a>
+                <a class="btn btn-danger" href="{{ route('category.delete', $category->id) }}">Sil</a>
             </td>
         </tr>
     @endforeach
 </table>
-
-</body>
-
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
+@stop

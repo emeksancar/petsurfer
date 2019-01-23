@@ -1,11 +1,15 @@
+@extends ('layouts.default')
+
+@section('content')
 <form action="{{ route('author.list') }}" method="get">
-    <input type="text" name="keyword" value="{{ app('request')->input('keyword') }}">
+    <input placeholder="Yazar adi, soyadi ya da ulkesi" class="form-control form-item" type="text" name="keyword" value="{{ app('request')->input('keyword') }}">
     <button type="submit" class="btn btn-success">Ara</button>
 </form>
 
-<a href="{{ route('author.create') }}">Yeni Yazar Ekle</a>
-
-<h2>Yazarlar</h2>
+<div class="upper-list">
+    <h2>Yazarlar</h2>
+    <a class="btn btn-success add-button" href="{{ route('author.create') }}">Yeni Yazar Ekle</a>
+</div>
 
 <table>
     <tr>
@@ -22,29 +26,10 @@
             <td>{{ $author->last_name }}</td>
             <td>{{ $author->country }}</td>
             <td>
-                <a href="{{ route('author.edit', $author->id) }}">Duzenle</a>
-                <a href="{{ route('author.delete', $author->id) }}">Sil</a>
+                <a class="btn btn-info" href="{{ route('author.edit', $author->id) }}">Duzenle</a>
+                <a class="btn btn-danger" href="{{ route('author.delete', $author->id) }}">Sil</a>
             </td>
         </tr>
     @endforeach
 </table>
-
-</body>
-
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
+@stop

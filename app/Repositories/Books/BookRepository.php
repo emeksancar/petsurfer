@@ -29,7 +29,8 @@ class BookRepository implements BookRepositoryInterface
             $query = $query->where('category', $param['category']);
         }
         if (!empty($param['keyword'])) {
-            $query = $query->where('books.name', 'like', '%'.$param['keyword'].'%');
+            $query = $query
+                ->where('books.name', 'like', '%'.$param['keyword'].'%');
         }
 
         $query = $query
