@@ -23,8 +23,12 @@ Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('books/list', 'BooksController@list')->name('books.list');
 
 //Authors
+Route::get('author/list', 'AuthorsController@list')->name('author.list');
 Route::get('author/create', 'AuthorsController@create')->name('author.create');
+Route::get('author/delete/{id}  ', 'AuthorsController@destroy')->name('author.delete');
 Route::post('author/store', 'AuthorsController@store')->name('author.store');
+Route::get('author/edit/{id}', 'AuthorsController@edit')->name('author.edit');
+Route::post('author/update', 'AuthorsController@update')->name('author.update');
 
 
 //Categories
