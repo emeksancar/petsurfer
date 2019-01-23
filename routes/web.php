@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('login', 'Auth\AuthController@getLogin');
+Route::post('login', 'Auth\AuthController@postLogin');
+// Books
+Route::get('books/list', 'BooksController@list')->name('books.list');
+
+//Authors
+Route::get('author/create', 'AuthorsController@create')->name('author.create');
+Route::post('author/store', 'AuthorsController@store')->name('author.store');
+
+
+//Categories
