@@ -1,6 +1,7 @@
 @extends ('layouts.default')
 
 @section('content')
+    @include('partials.messages')
     <div class="text-center">
         <h2>Giris Yap</h2>
         <form action="{{ route('login') }}" method="post">

@@ -36,7 +36,7 @@ class AuthorsController extends Controller
         $all = $request->all();
         $id = $this->model->create($all)->id;
 
-        return redirect(route('author.edit', $id));
+        return redirect(route('author.edit', $id))->with('success', ['Yazar basariyla kaydedildi.']);
     }
 
     public function edit($id) {
@@ -58,13 +58,13 @@ class AuthorsController extends Controller
         $author = $this->model->find($all['id']);
         $author->update($all);
 
-        return back();
+        return back()->with('success', ['Yazar basariyla duzenlendi.']);
     }
 
     public function destroy($id) {
         $author = $this->model->find($id);
         $author->delete();
 
-        return redirect(route('author.list'));
+        return redirect(route('author.list'))->with('success', ['Yazar basariyla silindi.']);
     }
 }

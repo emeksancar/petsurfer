@@ -1,6 +1,7 @@
 @extends ('layouts.default')
 
 @section('content')
+    @include('partials.messages')
 <form action="{{ route($route) }}" method="post">
     <input type="hidden" value="{{ csrf_token() }}" name="_token">
     @if(isset($book->id))

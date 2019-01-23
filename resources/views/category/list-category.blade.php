@@ -1,6 +1,7 @@
 @extends ('layouts.default')
 
 @section('content')
+    @include('partials.messages')
 <form action="{{ route('category.list') }}" method="get">
     <input placeholder="Kategori adi ya da aciklamasi" class="form-item form-control" type="text" name="keyword" value="{{ app('request')->input('keyword') }}">
     <button type="submit" class="btn btn-success">Ara</button>

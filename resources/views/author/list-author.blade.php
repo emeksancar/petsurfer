@@ -1,6 +1,7 @@
 @extends ('layouts.default')
 
 @section('content')
+    @include('partials.messages')
 <form action="{{ route('author.list') }}" method="get">
     <input placeholder="Yazar adi, soyadi ya da ulkesi" class="form-control form-item" type="text" name="keyword" value="{{ app('request')->input('keyword') }}">
     <button type="submit" class="btn btn-success">Ara</button>

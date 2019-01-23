@@ -1,6 +1,7 @@
 @extends ('layouts.default')
 
 @section('content')
+    @include('partials.messages')
     <form action="{{ route('books.list') }}" method="get">
         <input placeholder="Kitap Adi" class="form-control form-item" type="text" name="keyword" value="{{ app('request')->input('keyword') }}">
         <select class="form-control form-item" name="category" id="">

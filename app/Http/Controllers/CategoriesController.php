@@ -34,7 +34,7 @@ class CategoriesController extends Controller
         $all = $request->all();
         $id = $this->model->create($all)->id;
 
-        return redirect(route('category.edit', $id));
+        return redirect(route('category.edit', $id))->with('success', ['Kategori basariyla olusturuldu.']);
     }
 
     public function edit($id) {
@@ -53,13 +53,13 @@ class CategoriesController extends Controller
         $category = $this->model->find($all['id']);
         $category->update($all);
 
-        return back();
+        return back()->with('success', ['Kategori basariyla duzenlendi.']);
     }
 
     public function destroy($id) {
         $category = $this->model->find($id);
         $category->delete();
 
-        return redirect(route('category.list'));
+        return redirect(route('category.list'))->with('success', ['Kategori basariyla silindi.']);
     }
 }

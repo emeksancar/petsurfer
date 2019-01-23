@@ -46,9 +46,9 @@ class BooksController extends Controller
         if ($this->model->isValidIsbn($all['isbn'])) {
             $id = $this->model->create($all)->id;
 
-            return redirect(route('book.edit', $id));
+            return redirect(route('book.edit', $id))->with('success', ['Kitap basariyla kaydedildi.']);
         } else {
-            return back()->withErrors('errro', 'isbn yanlis');
+            return back()->withErrors('errors', 'isbn yanlis');
         }
     }
 
@@ -73,9 +73,9 @@ class BooksController extends Controller
         if ($this->model->isValidIsbn($all['isbn'])) {
             $id = $this->model->create($all)->id;
 
-            return redirect(route('book.edit', $id));
+            return redirect(route('book.edit', $id))->with('success', ['Kitap basariyla duzenlendi.']);
         } else {
-            return back()->withErrors('errro', 'isbn yanlis');
+            return back()->withErrors('errors', 'isbn yanlis');
         }
     }
 
@@ -83,6 +83,6 @@ class BooksController extends Controller
         $book = $this->model->find($id);
         $book->delete();
 
-        return redirect(route('books.list'));
+        return redirect(route('books.list'))->with('success', ['Kitap basariyla silindi.']);
     }
 }
